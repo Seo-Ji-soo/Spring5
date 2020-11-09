@@ -17,6 +17,7 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 	
 	@Bean
 	public MemberRegisterService memberRegSvc() {
+		// 스프링 자바 설정에서는 생성자를 이용해서 의존 객체를 주입하기 위해 해당 설정을 담은 메서드를 호출.
 		return new MemberRegisterService(memberDao());  // MemberRegsiterService 생성자를호출할 때 memberDao()메서드를 호출.
 		                                                // 즉, memberDao()가 생성한 객체를 MemberRegisterService 생성자를 통해 주입.
 	}
