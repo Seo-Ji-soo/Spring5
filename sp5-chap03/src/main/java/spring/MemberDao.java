@@ -1,9 +1,10 @@
 package spring;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MemberDao {
+public class MemberDao {   // 회원정보를 Map에 담음.
 	
 	private static long nextId = 0;
 	
@@ -20,6 +21,10 @@ public class MemberDao {
 	
 	public void update(Member member) {
 		map.put(member.getEmail(), member);
+	}
+	
+	public Collection<Member>selectAll(){
+		return map.values();
 	}
 	
 
