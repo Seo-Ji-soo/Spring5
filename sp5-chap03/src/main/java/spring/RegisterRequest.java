@@ -6,6 +6,8 @@ public class RegisterRequest { // 회원가입
 	private String password;
 	private String confirmPassword;
 	private String name;
+	
+	
 	public String getEmail() {
 		return email;
 	}
@@ -31,7 +33,7 @@ public class RegisterRequest { // 회원가입
 		this.name = name;
 	}
 	
-	public boolean isPasswordEqualToConfirmPassword() {
+	public boolean isPasswordEqualToConfirmPassword() { // 패스워드 동일한지 확인.
 		return password.contentEquals(confirmPassword);
 		
 	}

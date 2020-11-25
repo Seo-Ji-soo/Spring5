@@ -15,7 +15,7 @@ public class MemberListPrinter {
 	public void printAll() {   // void = 리턴값 없음. 리턴값 없는 매소드.
 		Collection<Member> members = memberDao.selectAll();
 		// collection.forEach(변수 -> 반복처리(변수))
-		members.forEach(m -> printer.print(m));  // forEach는 배열,List,Map 등에 들어 있는 값을 순서대로 꺼내 처리를 할 때 (for같은 반복문을 처리할 때) 사용
+		members.forEach(m -> printer.print(m));  // forEach는 배열,List,Map 등에 들어 있는 값을 순서대로 꺼내 처리를 할 때 (for같은 반복문을 처리할 때) 사용.
 	}
 
 }
