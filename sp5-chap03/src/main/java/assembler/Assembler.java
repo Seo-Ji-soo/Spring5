@@ -4,7 +4,8 @@ import spring.ChangePasswordService;    // 암호 변경 기능 클래스
 import spring.MemberDao;
 import spring.MemberRegisterService;   // 회원가입 클래스
 
-public class Assembler {  // spring패키지에 있는 회원가입이나 암호 변경 기능을 제공하는 클래스의 객체를 생성하고 
+public class Assembler {  // spring패키지에 있는 회원가입(spring.MemberRegisterService)이나 
+ 	                      //암호 변경 기능(ChangePasswordService)을 제공하는 클래스의 객체를 생성하고 
 	                      // 의존 대상이 되는 객체를 주입해주는 조립기 클래스 
 	
 	private MemberDao memberDao; // 회원정보를 Map에 담음.
