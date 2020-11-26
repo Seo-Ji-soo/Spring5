@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Member {
 	
-	private Long id;  // 아이디
+	private Long id;  // 아이디 (관리자가 제공) 첫번째 회원이면 id=1, 두번째 회원이면 id=2 ...
 	private String email;   // 이메일
 	private String password;  // 비밀번호
 	private String name;    // 이름
