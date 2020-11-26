@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MemberDao {   // 회원정보를 Map에 담음.
+public class MemberDao {   // 회원정보를 Map에 담음.(아직 디비와 연결 전.)
 	
 	private static long nextId = 0;
 	
