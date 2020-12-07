@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import spring.ChangePasswordService;
 import spring.MemberDao;
+import spring.MemberInfoPrinter;
 import spring.MemberListPrinter;
 import spring.MemberPrinter;
 import spring.MemberRegisterService;
@@ -32,7 +33,6 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 	}
 	
 	// 두 개 이상의 인자를 받는 생성자를 사용하는 설정 추가 (p.82)
-	
 	@Bean
 	public MemberPrinter memberPrinter() {
 		return new MemberPrinter();
@@ -42,5 +42,16 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 	public MemberListPrinter listPrinter() {
 		return new MemberListPrinter(memberDao(),memberPrinter());
 	}
+	
+	// MemberInfoPrinter 클래스에서 세터 메서드를 이용해서 의존을 주입하는 설정코드를 추가.(p.86)
+	@Bean
+	public MemberInfoPrinter infoPrinter() {
+		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
+		infoPrinter.setMemDao(memberDao());
+		infoPrinter.setPrinter(memberPrinter());
+		return infoPrinter;
+	}
+	
+	
 
 }
