@@ -36,13 +36,15 @@ public class MainForSpring {
 			}else if(command.equals("list")) {
 				processListCommand();
 				continue;
+			}else if(command.startsWith("info")) {
+				processInfoCommand(command.split(" "));
+				continue;
 			}
 			printHelp();
 		}
 	}
 
 
-	
 	private static void processNewCommand(String[] arg) {   // 새로운 회원 정보 생성.
 		if(arg.length != 5) {
 			printHelp();   // 명령어를 잘못 입력한 경우 도움말 출력해주는 메서드.
@@ -114,6 +116,19 @@ public class MainForSpring {
 		listPrinter.printAll();
 		
 	}
+	
+	private static void processInfoCommand(String[] arg) {
+		if(arg.length !=2) {
+			printHelp();
+			return;
+		}
+		MemberInfoPrinter infoPrinter =
+				ctx.getBean("infoPrinter", MemberInfoPrinter.class);
+		infoPrinter.printMemberInfo(arg[1]);
+		
+	}
+
+
 	
 	
 
