@@ -23,7 +23,7 @@ public class MemberDao {   // 회원정보를 Map에 담음.(아직 디비와 �
 		map.put(member.getEmail(), member);
 	}
 	
-	public Collection<Member>selectAll(){
+	public Collection<Member>selectAll(){   
 		return map.values();
 	}
 	
