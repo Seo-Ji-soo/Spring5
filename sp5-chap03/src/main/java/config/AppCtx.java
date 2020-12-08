@@ -9,6 +9,7 @@ import spring.MemberInfoPrinter;
 import spring.MemberListPrinter;
 import spring.MemberPrinter;
 import spring.MemberRegisterService;
+import spring.VersionPrinter;
 
 @Configuration  // 이 클래스는 Spring 환경설정과 관련된 클래스이다. 라고 말해주는 애노테이션.
 public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사용하는 코드를 작성하는 클래스.
@@ -38,6 +39,7 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 		return new MemberPrinter();
 	}
 	
+	
 	@Bean
 	public MemberListPrinter listPrinter() {
 		return new MemberListPrinter(memberDao(),memberPrinter());
@@ -50,6 +52,15 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 		infoPrinter.setMemDao(memberDao());
 		infoPrinter.setPrinter(memberPrinter());
 		return infoPrinter;
+	}
+	
+	@Bean
+	public VersionPrinter versionPrinter() {
+		VersionPrinter versionPrinter = new VersionPrinter();
+		versionPrinter.setMajorVersion(5);
+		versionPrinter.setMinorVersion(0);
+		return versionPrinter;
+		
 	}
 	
 	
