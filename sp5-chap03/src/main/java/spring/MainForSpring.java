@@ -39,11 +39,16 @@ public class MainForSpring {
 			}else if(command.startsWith("info")) {
 				processInfoCommand(command.split(" "));
 				continue;
+			}else if(command.equals("version")) {
+				processVersionCommand();
+				continue;
 			}
 			printHelp();
 		}
 	}
 
+
+	
 
 	private static void processNewCommand(String[] arg) {   // 새로운 회원 정보 생성.
 		if(arg.length != 5) {
@@ -108,15 +113,17 @@ public class MainForSpring {
 		System.out.println("change 이메일 현재비번 변경비번");
 		System.out.println();
 			
-	}
+	}// printHelp() end
 	
+	// 리스트 출력 메소드
 	private static void processListCommand() {
 		MemberListPrinter listPrinter=
 				ctx.getBean("listPrinter", MemberListPrinter.class);
 		listPrinter.printAll();
 		
-	}
+	}// processListCommand() end
 	
+	// 이메일로 이메일 같은 멤버 찾기
 	private static void processInfoCommand(String[] arg) {
 		if(arg.length !=2) {
 			printHelp();
@@ -126,7 +133,16 @@ public class MainForSpring {
 				ctx.getBean("infoPrinter", MemberInfoPrinter.class);
 		infoPrinter.printMemberInfo(arg[1]);
 		
-	}
+	}// processInfoCommand() end
+	
+	// version출력 메서드
+	private static void processVersionCommand() {
+		VersionPrinter versionPrinter =
+				ctx.getBean("versionPrinter", VersionPrinter.class);
+		versionPrinter.print();
+		
+	}// processVersionCommand() end
+
 
 
 	
