@@ -13,6 +13,10 @@ import spring.VersionPrinter;
 
 @Configuration  // 이 클래스는 Spring 환경설정과 관련된 클래스이다. 라고 말해주는 애노테이션.
 public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사용하는 코드를 작성하는 클래스.
+	
+	//스프링 컨테이너는 @Bean이 붙은 메서드에 대해 한 개의 객체만 생성. --> 싱글톤 
+	// 다른 설정 메서드에서 memberDao()를 몇 번을 호출하더라도 항상 같은 객체를 리턴한다. 
+	//고로, memberRegSvc()메서드와 changePwdSvc()메서드에서 memberDao()메서드를 각각 실행해도 동일한 MemberDao 객체를 사용한다. 
 
 	@Bean // @configuration설정된 클래스의 메소드에서 사용하는 애노테이션.
 	public MemberDao memberDao() {
