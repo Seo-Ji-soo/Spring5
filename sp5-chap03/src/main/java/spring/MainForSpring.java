@@ -15,7 +15,8 @@ public class MainForSpring {
 
 	public static void main(String[] args) throws IOException {
 		ctx = new AnnotationConfigApplicationContext(AppCtx.class);
-		
+	 // AppCtx클래스를 AppConf1, AppConf2 클래스로 나누어 설정했을때, 아래와 같이 코드 작성하면 됨.
+	 // ctx = new AnnotationConfigApplicationContext(AppConf1.class,AppConf2.class);	
 		BufferedReader reader = 
 				new BufferedReader(new InputStreamReader(System.in));
 		
