@@ -7,16 +7,23 @@ import java.io.InputStreamReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import config.AppCtx;
+import config.AppConf1;
+import config.AppConf2;
+//import config.AppCtx;
 
 public class MainForSpring {
 	
 	private static ApplicationContext ctx = null;
 
 	public static void main(String[] args) throws IOException {
-		ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+	 //	ctx = new AnnotationConfigApplicationContext(AppCtx.class);
 	 // AppCtx클래스를 AppConf1, AppConf2 클래스로 나누어 설정했을때, 아래와 같이 코드 작성하면 됨.
-	 // ctx = new AnnotationConfigApplicationContext(AppConf1.class,AppConf2.class);	
+	    ctx = new AnnotationConfigApplicationContext(AppConf1.class,AppConf2.class);	
+		
+	// @Configuration 설정 클래스도 빈으로 등록된다는 것을 확인.
+	    AppConf2 appConf2 = ctx.getBean(AppConf2.class);
+	    System.out.println(appConf2 != null); // true 출력.
+	    
 		BufferedReader reader = 
 				new BufferedReader(new InputStreamReader(System.in));
 		
