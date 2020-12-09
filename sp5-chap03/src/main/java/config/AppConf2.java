@@ -12,6 +12,10 @@ import spring.MemberPrinter;
 import spring.MemberRegisterService;
 import spring.VersionPrinter;
 
+//@Configuration 어노테이션이 붙은 설정 클래스를 내부적으로 스프링 빈으로 등록.
+//다른 빈과 마찬가지로 @Autowired가 붙은 대상에 대해 알맞은 빈을 자동으로 주입.
+// 즉, 스프링 컨테이너는 AppConf2 객체를 빈으로 등록. 
+// @Autowired가 붙은 두 필드 memberDao, memberPrinter에 해당타입의 빈 객체를 주입. 
 @Configuration
 public class AppConf2 {
 	// @Autowired은 스프링의 자동 주입 기능을 위한 것. 의존 주입과 관련 있음.
