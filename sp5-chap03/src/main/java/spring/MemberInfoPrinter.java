@@ -1,9 +1,13 @@
 package spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 // 지정한 이메일을 갖는 Member를 찾아서 정보를 콘솔에 출력하는 클래스.
 public class MemberInfoPrinter {
 	
+	@Autowired
 	private MemberDao memDao;
+	@Autowired
 	private MemberPrinter printer;
 	
 	
