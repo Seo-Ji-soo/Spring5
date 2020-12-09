@@ -43,8 +43,9 @@ public class AppConf2 {
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
 		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
-		infoPrinter.setMemDao(memberDao);
-		infoPrinter.setPrinter(memberPrinter);
+		// 세터 메서드를 사용해서 의존 주입을 하지 않아도
+		// 스프링 컨테이너가 @Autowired를 붙인 필드에 
+		// 자동으로 해당 타입의 빈 객체를 주입
 		return infoPrinter;
 
 	}
