@@ -33,7 +33,9 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 	@Bean
 	public ChangePasswordService changePwdSvc() {
 		ChangePasswordService pwdSvc = new ChangePasswordService();
-		pwdSvc.setMemberDao(memberDao());  // 이 메서드는 세터 setMemberDao() 메서드를 이용해서 의존 객체를 주입
+		// 이 부분은 setMemberDao메서드를 호출해 빈객체를 주입하지 않아도 스프링이 @Autowired가 붙인 필드에 해당타입의 빈 객체를 찾아서 자동으로 주입.
+		//(ChangePasswordService 클래스의 memberDao) 따라서 밑에 부분은 써줄 필요 없음.
+		/*pwdSvc.setMemberDao(memberDao());  // 이 메서드는 세터 setMemberDao() 메서드를 이용해서 의존 객체를 주입 */  
 		return pwdSvc;
 	}
 	
