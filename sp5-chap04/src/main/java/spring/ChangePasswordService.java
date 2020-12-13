@@ -1,7 +1,10 @@
 package spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class ChangePasswordService {  //암호 변경 기능 제공
 	
+	@Autowired   //  이것을 붙이면 설정 클래스(AppCtx)에서 의존을 주입하지 않아도 됨.
 	private MemberDao memberDao;
 	
 	public void changePassword(String email,String oldPwd, String newPwd) {
