@@ -11,9 +11,12 @@ import assembler.Assembler;
 import config.AppCtx;
 import spring.ChangePasswordService;
 import spring.DuplicateMemberException;
+import spring.MemberInfoPrinter;
+import spring.MemberListPrinter;
 import spring.MemberNotFoundException;
 import spring.MemberRegisterService;
 import spring.RegisterRequest;
+import spring.VersionPrinter;
 import spring.WrongIdPasswordException;
 
 public class MainForSpring {   // MainForAssembler 클래스를 스프링 컨테이너를 사용하도록 변경한 클래스.
@@ -42,11 +45,20 @@ public class MainForSpring {   // MainForAssembler 클래스를 스프링 컨테
 				}else if(command.startsWith("change")) {  // command가 change로 시작하는거
 					processChangeCommand(command.split(" ")); 
 					continue;
-				} // processNewCommand()메서드와 processChangeCommand() 메서드에 전달 되는 값은 문자열 배열.
-				
+				} else if(command.equals("list")) {
+					processListCommand();
+				}else if(command.startsWith("info")) {
+					processInfoCommand(command.split(" "));
+				}else if(command.equals("version")) {
+					processVersionCommand();
+					continue;
+				}else {
 				printHelp(); // 명령어를 잘못 입력한 경우 도움말을 출력해주는 메서드 실행.
+				}
 			}		
 		}
+				
+				
 		
 
 		private static void processNewCommand(String[] arg) {   // 새로운 회원 정보 생성.
@@ -103,6 +115,30 @@ public class MainForSpring {   // MainForAssembler 클래스를 스프링 컨테
 		// processChangeCommand()에서 ChangePasswordService 객체를 사용함. Assembler에서  ChangePasswordService는 객체를 생성할 때 MemberDao객체를 주입함.
 		// -------> processChangeCommand() 실행에 성공하면, MemberDao의 map에 보관된 회원 데이터의 암호가 변경됨.
 		
+		private static void processListCommand() {  // 등록된 회원정보 리스트 출력.
+			MemberListPrinter listPrinter = 
+					ctx.getBean("listPrinter",MemberListPrinter.class);
+			listPrinter.printAll();
+			
+		}
+		
+		private static void processInfoCommand(String[] arg) { // 같은 이메일로 된 회원 정보 찾기.
+			if(arg.length !=2) {
+				printHelp();
+				return;
+			}
+			MemberInfoPrinter infoPrinter =
+					ctx.getBean("infoPrinter", MemberInfoPrinter.class);
+			infoPrinter.printMemberInfo(arg[1]);		
+		}
+		
+		private static void processVersionCommand() {
+			VersionPrinter versionPrinter = 
+					ctx.getBean("versionPrinter",VersionPrinter.class);
+			versionPrinter.print();
+		}
+
+
 		
 		private static void printHelp() {  // 도움말을 출력하는 메소드.
 			System.out.println();

@@ -53,8 +53,10 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
 		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
-		infoPrinter.setMemDao(memberDao());
-		infoPrinter.setPrinter(memberPrinter());
+		//infoPrinter.setMemDao(memberDao());
+		//infoPrinter.setPrinter(memberPrinter());
+		//세터 메소드를 사용해서 의존 주입을 하지 않아도 스프링 컨테이너가 @Autowired를 붙인 필드에 자동으로 해당 타입의 빈 객체를 주입.
+		//(MemberInfoPrinter  private MemberDao memDao; 와  private MemberPrinter printer; 위에 붙여져 있음.) 
 		return infoPrinter;
 	}
 	
