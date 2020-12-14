@@ -55,8 +55,6 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
 		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
-		infoPrinter.setMemDao(memberDao());
-		infoPrinter.setPrinter(memberPrinter());
 		return infoPrinter;
 	}
 	
