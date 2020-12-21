@@ -26,8 +26,12 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 	@Bean
 	public MemberRegisterService memberRegSvc() {
 		// 스프링 자바 설정에서는 생성자를 이용해서 의존 객체를 주입하기 위해 해당 설정을 담은 메서드를 호출.
-		return new MemberRegisterService(memberDao());  // MemberRegsiterService 생성자를호출할 때 memberDao()메서드를 호출.
+		//return new MemberRegisterService(memberDao());  // MemberRegsiterService 생성자를호출할 때 memberDao()메서드를 호출.
 		                                                // 즉, memberDao()가 생성한 객체를 MemberRegisterService 생성자를 통해 주입.
+		
+		// MemberRegisterService에서 memberDao에다가 자동주입 어노테이션 @Autowired를 붙여 줬기때문에 직접 주입해 줄 필요 없음.
+		// 따라서 자동주입전 return new MemberRegisterService(memberDao()); 이부분을 밑에 처럼 작성.
+		return new MemberRegisterService();
 	}
 	
 	@Bean
@@ -48,14 +52,16 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 	
 	@Bean
 	public MemberListPrinter listPrinter() {
-		return new MemberListPrinter(memberDao(),memberPrinter());
+		//return new MemberListPrinter(memberDao(),memberPrinter());
+		// MemberListPrinter에서 memberDao, memberPrinter에다가 자동주입 어노테이션 @Autowired를 붙여 줬기때문에 직접 주입해 줄 필요 없음.
+		// 따라서 자동주입전 return new MemberListPrinter(memberDao(),memberPrinter()); 이부분을 밑에 처럼 작성.
+		return new MemberListPrinter();
 	}
 	
 	// MemberInfoPrinter 클래스에서 세터 메서드를 이용해서 의존을 주입하는 설정코드를 추가.(p.86)
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
-		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
-		return infoPrinter;
+		return new MemberInfoPrinter();
 	}
 	
 	@Bean
