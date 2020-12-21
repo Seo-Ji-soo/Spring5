@@ -15,6 +15,7 @@ public class MemberListPrinter {
 	}*/
 	
 	// 밑에 setter메서드에 @Autowired 어노테이션이 붙었으므로 인자가 없는 기본 생성자만 있으면 됨. 왜? MemberDao, MemberPrinter이 자동으로 주입되기 때문에 
+	// 기본생성자 추가 이유 : AppCtx 클래스에서 기본생성자를 이용해서 객체를 생성하기 위함.
 	public MemberListPrinter() {  // 기본생성자
 		
 	}
