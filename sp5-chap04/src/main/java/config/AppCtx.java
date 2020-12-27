@@ -1,5 +1,6 @@
 package config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -43,9 +44,22 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 		return pwdSvc;
 	}
 	
-	// 두 개 이상의 인자를 받는 생성자를 사용하는 설정 추가 (p.82)
+	/*// 두 개 이상의 인자를 받는 생성자를 사용하는 설정 추가 (p.82)
 	@Bean
 	public MemberPrinter memberPrinter() {
+		return new MemberPrinter();
+	}*/
+	
+	// @Autowired 어노테이션을 붙인 주입 대상에 일치하는 빈이 두개 이상일때 오류 발생하므로
+	// @Qualifier 어노테이션을 붙여 자동 주입할 빈을 지정할 수 있음. 그것을 알아보는 코드를 작성.--> ex) memberPrinter1, memberPrinter2
+	@Bean
+	@Qualifier("printer")   // 해당 빈의 한정 값으로 "printer"을 지정.
+	public MemberPrinter memberPrinter1() {
+		return new MemberPrinter();
+	}
+	
+	@Bean
+	public MemberPrinter memberPrinter2() {
 		return new MemberPrinter();
 	}
 	
