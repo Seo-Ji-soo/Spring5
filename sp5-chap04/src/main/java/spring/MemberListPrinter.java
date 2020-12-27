@@ -3,6 +3,7 @@ package spring;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class MemberListPrinter {
 	
@@ -31,7 +32,10 @@ public class MemberListPrinter {
 		this.memberDao = memberDao;
 	}
     
+	// AppCtx 파일에서 지정한 한정 값(@Qualifier 어노테이션 붙인 후 지정한 이름 "printer")은
+	// @Autowired 어노테이션에서 자동 주입할 빈을 한정할 때 사용.
 	@Autowired
+	@Qualifier("printer")
 	public void setPrinter(MemberPrinter printer) {
 		this.printer = printer;
 	}
