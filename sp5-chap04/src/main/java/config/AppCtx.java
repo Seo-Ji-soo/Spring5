@@ -10,6 +10,7 @@ import spring.MemberInfoPrinter;
 import spring.MemberListPrinter;
 import spring.MemberPrinter;
 import spring.MemberRegisterService;
+import spring.MemberSummaryPrinter;
 import spring.VersionPrinter;
 
 @Configuration  // 이 클래스는 Spring 환경설정과 관련된 클래스이다. 라고 말해주는 애노테이션.
@@ -59,8 +60,12 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 	}
 	
 	@Bean
+	@Qualifier("summaryPrinter")
 	public MemberPrinter memberPrinter2() {
-		return new MemberPrinter();
+		// MemberPrinter()에서  MemberSummaryPrinter() 로 바꿔줬음에도 @Qualifier 지정해주기 전이랑 같은 오류가 뜸
+		// why???   MemberSummaryPrinter클래스가 MemberPrinter클래스를 상속 받았기 때문. 
+		// 즉,  MemberSummaryPrinter 클래스가 MemberPrinter클래스 타입에도 할당할 수 있으므로.
+		return new MemberSummaryPrinter();     
 	}
 	
 	
