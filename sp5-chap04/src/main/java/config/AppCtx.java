@@ -77,11 +77,28 @@ public class AppCtx {     // Assembler클래스를 대신하여 스프링을 사
 		return new MemberListPrinter();
 	}
 	
-	// MemberInfoPrinter 클래스에서 세터 메서드를 이용해서 의존을 주입하는 설정코드를 추가.(p.86)
+	/* 자동주입.
+	 *--> memberPrinter1()를 가져다 씀. 왜냐 MemberInfoPrinter클래스에 setPrinter이  @Qualifier("printer") 이부분으로 자동주입을 지정해 줬기 때문에.
+    // MemberInfoPrinter 클래스에서 세터 메서드를 이용해서 의존을 주입하는 설정코드를 추가.(p.86)
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
 		return new MemberInfoPrinter();
 	}
+	*/
+	
+	// 명시적 의존 주입.
+	// --> 직접적으로 명시를 해줬기 때문에 infoPrinter 클래스에서 setPrinter의  @Qualifier("printer") 지정 부분을 무시하고 
+	//      직접 명시한 memberPrinter2 메서드를 호출 할 것 같으나!!!!!!!!! NO!!! 아님!!!!!
+	//* 직접 명시한 memberPrinter2()빈(MemberSummaryPrinter타입 객체가) 아닌 memberPrinter1 빈을 사용해서 회원정보를 출력함. 
+	//* 즉, 설정 클래스에서 세터 메서드를 통해 명시적으로 의존을 주입해도 
+	//* 해당 세터 메서드에 @Autowired어노테이션이 붙어 있으면 자동 주입을 통해 일치하는 빈  @Qualifier("printer")을 주입함. 
+	@Bean
+	public MemberInfoPrinter infoPrinter() {
+		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
+		infoPrinter.setPrinter(memberPrinter2());  // 여기서 호출한 memberPrinter2()은 MemberSummaryPrinter 객체이므로 이메일과 이름만 출력.
+		return infoPrinter;
+	}
+	
 	
 	@Bean
 	public VersionPrinter versionPrinter() {
