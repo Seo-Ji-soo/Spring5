@@ -4,7 +4,10 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+//@Component : 설정 클래스(AppCtx)에 빈으로 등록하지 않아도 원하는 클래스를 빈으로 등록해주는 어노테이션.
+@Component("listPrinter") // 어노테이션에 속성값 지정.
 public class MemberListPrinter {
 	
 	private MemberDao memberDao;

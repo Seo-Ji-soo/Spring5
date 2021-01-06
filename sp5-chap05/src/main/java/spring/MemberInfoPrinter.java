@@ -2,9 +2,11 @@ package spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-// 지정한 이메일을 갖는 Member를 찾아서 정보를 콘솔에 출력하는 클래스.
-public class MemberInfoPrinter {
+//@Component : 설정 클래스(AppCtx)에 빈으로 등록하지 않아도 원하는 클래스를 빈으로 등록해주는 어노테이션.
+@Component("infoPrinter") // 어노테이션에 속성값 지정.
+public class MemberInfoPrinter { // 지정한 이메일을 갖는 Member를 찾아서 정보를 콘솔에 출력하는 클래스.
 	
 	private MemberDao memDao;
 	private MemberPrinter printer;
