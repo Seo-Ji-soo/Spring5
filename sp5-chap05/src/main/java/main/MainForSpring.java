@@ -33,7 +33,8 @@ public class MainForSpring {   // MainForAssembler 클래스를 스프링 컨테
 					new BufferedReader(new InputStreamReader(System.in));  // Scanner과 같은 입력받는 방식. 
 			
 			while(true) {
-				System.out.println("명령어를 입력하세요 :");
+				System.out.println("명령어"
+						+ "를 입력하세요 :");
 				String command = reader.readLine(); // scanner로 치면 sc.next(); 같은거. readLine() 메소드를 이용하여 입력 받음.
 				if(command.equalsIgnoreCase("exit")) {   // equalsIgnoreCase:대소문자 구분 없이, equals:대소문자 구분함.
 					System.out.println("종료합니다.");
@@ -64,8 +65,10 @@ public class MainForSpring {   // MainForAssembler 클래스를 스프링 컨테
 					return;   // for문에서 break;한거 와 같은 의미. 원래 void메소드에서는 리턴 값이 없음.
 				}//if문 end
 				
+				// MemberRegisterService클래스에 @Component를 붙일때 속성값을 주어 이름을 지정하지 않았으므로 이름은 클래스이름의 첫글자만 소문자가 됨.
+				// 따라서 빈을 구하는 코드를 작성할때 이름을 따로 지정해 주지 않아도 됨.
 				MemberRegisterService regSvc = 
-						ctx.getBean("memberRegSvc", MemberRegisterService.class); // 스프링 컨테이너로부터 이름이 "memberRegSvc"인 빈 객체를 구함.
+						ctx.getBean(MemberRegisterService.class); 
 				RegisterRequest req = new RegisterRequest(); //회원가입.
 				req.setEmail(arg[1]);
 				req.setName(arg[2]);
@@ -93,8 +96,10 @@ public class MainForSpring {   // MainForAssembler 클래스를 스프링 컨테
 				return;
 			}//if문 end
 			
+			// ChangePasswordService클래스에 @Component를 붙일때 속성값을 주어 이름을 지정하지 않았으므로 이름은 클래스이름의 첫글자만 소문자가 됨.
+			// 따라서 빈을 구하는 코드를 작성할때 이름을 따로 지정해 주지 않아도 됨.
 			ChangePasswordService changePwdSvc =
-					ctx.getBean("changePwdSvc", ChangePasswordService.class); // 스프링 컨테이너로부터 이름이 "changePwdSvc"인 빈 객체를 구함.
+					ctx.getBean(ChangePasswordService.class); 
 			
 			try { //예외처리.
 				changePwdSvc.changePassword(arg[1],arg[2],arg[3]); // 객체의 암호 변경 실행.
@@ -137,9 +142,6 @@ public class MainForSpring {   // MainForAssembler 클래스를 스프링 컨테
 			versionPrinter.print();
 		}
 
-
-
-		
 		
 		private static void printHelp() {  // 도움말을 출력하는 메소드.
 			System.out.println();
