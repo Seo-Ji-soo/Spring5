@@ -5,12 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import spring.ChangePasswordService;
-import spring.MemberDao;
-import spring.MemberInfoPrinter;
-import spring.MemberListPrinter;
 import spring.MemberPrinter;
-import spring.MemberRegisterService;
 import spring.MemberSummaryPrinter;
 import spring.VersionPrinter;
 

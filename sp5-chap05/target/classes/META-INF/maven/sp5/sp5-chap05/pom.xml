@@ -12,7 +12,14 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>3.1.1.RELEASE</version>
+			<version>5.0.2.RELEASE</version>
+		</dependency>
+		
+		<!--AppCtxWithExclude 클래스에서 @Filter type을 AspectJ 패턴으로 지정할 때, 필요한 모듈. -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.13</version>
 		</dependency>
 		
 		<!--CGLIB -->
