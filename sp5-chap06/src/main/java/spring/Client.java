@@ -12,18 +12,27 @@ public class Client implements InitializingBean, DisposableBean {
 	private String host;
 	
 
+	public void setHost(String host) {
+		this.host = host;
+	}
+
 	@Override
+	// DisposableBean 인터페이스 상속을 받아 생기는 메서드
 	public void destroy() throws Exception {
-		// TODO Auto-generated method stub
+		System.out.println("Client.destroy() 실행");
 		
 	}
+	
+
+	public void send() {
+		System.out.println("Client.send()to"+host);
+	}
+
 
 	@Override
+	// InitializingBean 인터페이스 상속을 받아 생기는 메서드
 	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Client.afterPropertiesSet() 실행");	
 	}
 	
-	
-
 }

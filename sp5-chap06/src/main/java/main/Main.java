@@ -18,14 +18,18 @@ public class Main {
 
 	public static void main(String[] args) throws IOException{
 		
+		// 컨테이너 초기화.
 		AbstractApplicationContext ctx = 
 				new AnnotationConfigApplicationContext(AppCtx.class);
 		
+	    // 빈객체 생성. --> Client클래스의 afterPropertiesSet()실행.
 		Client client = ctx.getBean(Client.class);
 		client.send();
 		
+		// 빈객체 소멸. --> Client클래스의 destroy()실행.
+		// 스프링 컨테이너 종료. 
 		ctx.close();
-		
+		// 스프링 컨테이너 종료를 하지 않으면 빈객체 소멸을 하지 않기 때문에 destroy()메소드가 실행되지 않음.
 	
 	}
 }
