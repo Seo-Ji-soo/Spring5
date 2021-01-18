@@ -5,10 +5,10 @@ import java.io.IOException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;//자바 설정에서 정보를 읽어와 빈 객체를 생성하고 관리.
 import org.springframework.context.support.AbstractApplicationContext;
 
-import config.AppContext;
+
 import config.AppCtx;
 import spring.Client;
-import spring.Greeter;
+import spring.Client2;
 
 // 자세한 설명은 "sp5-chap02"프로젝트 Main.java 파일 참고.
 
@@ -23,12 +23,16 @@ public class Main {
 	public static void main(String[] args) throws IOException{
 		
 		// 컨테이너 초기화.
+		// 설정 클래스에서의 빈 객체들이 실행됨. 
 		AbstractApplicationContext ctx = 
 				new AnnotationConfigApplicationContext(AppCtx.class);
 		
-	    // 빈객체 생성. --> Client클래스의 afterPropertiesSet()실행.
+	    // 빈객체 생성. --> send()를 실행 시키기 위해. 
 		Client client = ctx.getBean(Client.class);
 		client.send();
+		
+		Client2 client2 = ctx.getBean(Client2.class);
+		client2.send();
 		
 		// 빈객체 소멸. --> Client클래스의 destroy()실행.
 		// 스프링 컨테이너 종료. 
