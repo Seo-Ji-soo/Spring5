@@ -24,7 +24,7 @@ public class ExeTimeAspect {
 	public Object measure(ProceedingJoinPoint joinPoint) throws Throwable{ // ProceedingJoinPoint 타입 파라미터 : 프록시 대상 객체의 메서드를 호출할 때 사용.
 		long start = System.nanoTime();
 		try {
-			Object result = joinPoint.proceed();// proceed() 메서드를 사용해서 실제 대상 객체의 메서드를 호출.
+			Object result = joinPoint.proceed();// Around Advice에서 사용할 공통 기능 메서드는 대부분 파라미터로 전달받은 proceed() 메서드을 호출해서 사용하여 실제 대상 객체의 메서드를 호출.
 			return result;
 		}finally {
 			long finish = System.nanoTime();
