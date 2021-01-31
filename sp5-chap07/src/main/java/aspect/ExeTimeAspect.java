@@ -13,7 +13,8 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect // 공통 기능을 제공하는 Aspect클래스라고 명시해주는 어노테이션.(프록시 객체) / @Aspect 어노테이션을 적용한 클래스는 Advice와 Pointcut을 함께 제공.
 public class ExeTimeAspect {
 	
-	// @Pointcut : 공통 기능을 적용할 대상을 설정. / execution은 뒤에서....살펴봄.
+	// @Pointcut : 공통 기능을 적용할 대상을 설정. 
+	// execution(public * chap07..*(..)) : chap07 패키지 및 하위 패키지에 있는, 파라미터가 0개 이상인 메서드 호출,'..'은 해당패키지 또는 하위패키지를 표현.
 	@Pointcut("execution(public * chap07..*(..))") // chap07 패키지와 그 하위 패키지에 위치한 타입의 public 메서드를 Pointcut으로 설정.
 	private void publicTarget() {
 		
